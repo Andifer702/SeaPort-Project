@@ -1,0 +1,71 @@
+// File: aSPae.txt
+// Data file for SeaPort projects
+// Date: Fri Feb 22 21:51:03 EST 2019
+// parameters: 1 3 5 5 10 1
+//   ports, docks, pships, cships, jobs, persons
+
+// port   name index parent(null)
+//    port   <string> <int> <int>
+port Christchurch 10000 0
+
+// dock   name index parent(port)
+//    dock   <string> <int> <int>
+  dock Pier_0 20000 10000 30000
+  dock Pier_3 20003 10000 30003
+  dock Pier_1 20001 10000 30001
+  dock Pier_2 20002 10000 30002
+  dock Pier_4 20004 10000 30004
+
+// pship  name index parent(dock/port) weight length width draft numPassengers numRooms numOccupied
+//    pship  <string> <int> <int> <double> <double> <double> <double> <int> <int> <int>
+    pship             Telltale 30003 20003 88.17 102.30 41.44 28.17 1152 682 576
+    pship             Canonist 30001 20001 178.31 286.11 40.81 41.93 857 235 235
+    pship           Trickishly 30004 20004 244.24 322.71 90.73 22.47 3229 1052 1052
+    pship            Intrusted 30002 20002 169.24 266.75 91.66 40.83 2347 806 806
+    pship              Endless 30000 20000 157.59 375.73 129.89 20.40 1137 601 568
+
+// cship  name index parent(dock/port) weight length width draft cargoWeight cargoVolume cargoValue
+//    cship  <string> <int> <int> <double> <double> <double> <double> <double> <double> <double>
+    cship                 Arab 40000 10000 215.49 354.36 107.97 28.00 72.04 194.31 281.34
+    cship       Interlocutress 40003 10000 128.62 142.37 52.28 18.72 168.39 137.84 128.75
+    cship            Apparatus 40004 10000 131.06 154.18 114.21 22.40 37.66 125.28 705.62
+    cship                 Bunt 40002 10000 209.73 153.75 107.68 28.09 186.82 158.18 849.44
+    cship          Shadowgraph 40001 10000 170.58 210.73 112.55 42.04 165.17 155.13 453.85
+
+// person name index parent skill
+//    person <string> <int> <int> <string>
+    person                Celia 50001 10000 cleaner
+    person            Guadalupe 50003 10000 inspector
+    person                 Saul 50004 10000 crew
+    person                Diane 50002 10000 carpenter
+    person               Donald 50000 10000 stevedore
+
+// job    name index parent duration [skill]+ (one or more, matches skill in person, may repeat)
+//    job    <string> <int> <int> <double> [<string>]+
+    job         Job_43_98_39 60004 30001 81.46 mate electrician
+    job         Job_85_35_14 60001 30000 83.59 electrician mechanic crew
+    job         Job_95_17_25 60025 40004 97.35
+    job         Job_56_27_83 60007 30002 55.31 cleaner mechanic driver
+    job         Job_51_22_15 60000 30000 37.36 driver
+    job         Job_70_39_31 60013 40000 107.89 janitor inspector
+    job         Job_63_48_17 60024 40004 23.56 engineer janitor mate
+    job         Job_27_44_11 60021 40003 112.35 inspector carpenter painter captain
+    job         Job_99_57_88 60026 40004 50.02
+    job         Job_68_73_72 60010 30002 34.41 captain
+    job         Job_77_37_85 60014 40001 62.68 stevedore stevedore
+    job         Job_77_89_85 60003 30000 89.13
+    job         Job_40_75_35 60018 40002 53.69 crew
+    job         Job_49_48_69 60022 40004 87.13 clerk mate
+    job         Job_19_65_81 60005 30001 60.14 clerk
+    job         Job_43_91_23 60002 30000 72.72 janitor mate
+    job         Job_95_19_10 60016 40002 85.71 mate electrician
+    job         Job_56_59_23 60012 30003 116.00
+    job         Job_53_47_28 60011 30003 30.70 cleaner captain stevedore
+    job         Job_58_57_31 60019 40003 40.14 mate
+    job         Job_96_84_67 60006 30001 28.52
+    job         Job_86_30_27 60009 30002 111.38 captain craneOperator
+    job         Job_99_44_27 60023 40004 20.98 janitor captain
+    job         Job_51_75_93 60020 40003 96.68
+    job         Job_95_84_56 60017 40002 65.73 craneOperator crew mechanic
+    job         Job_75_94_20 60008 30002 79.67
+    job         Job_50_30_40 60015 40002 99.13

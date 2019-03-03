@@ -1,0 +1,37 @@
+// File: aSPac.txt
+// Data file for SeaPort projects
+// Date: Sat Jan 26 19:17:34 EST 2019
+// parameters: 2 1 2 0 1 1
+//   ports, docks, pships, cships, jobs, persons
+
+// port   name index parent(null)
+//    port   <string> <int> <int>
+port Chita 10000 0
+port Ufa 10001 0
+
+// dock   name index parent(port)
+//    dock   <string> <int> <int>
+  dock Pier_2 20002 10001 30002
+  dock Pier_1 20001 10000 30001
+  dock Pier_3 20003 10001 30003
+  dock Pier_0 20000 10000 30000
+
+// pship  name index parent(dock/port) weight length width draft numPassengers numRooms numOccupied
+//    pship  <string> <int> <int> <double> <double> <double> <double> <int> <int> <int>
+    pship             Halyards 30002 20002 159.38 255.01 64.93 42.94 82 804 41
+    pship            Peepholes 30001 20001 62.86 320.53 66.47 43.72 1564 459 459
+    pship           Measurably 30000 20000 60.70 156.35 75.47 33.09 1255 756 627
+    pship               Higher 30003 20003 189.78 410.51 70.19 17.65 1426 464 464
+
+// person name index parent skill
+//    person <string> <int> <int> <string>
+    person               Alonzo 50008 10001 stevedore
+    person                Lynda 50006 10001 craneOperator
+    person                  Ray 50005 10001 clerk
+    person                  Guy 50007 10001 mate
+    person               Victor 50000 10000 mate
+    person               Evelyn 50004 10000 carpenter
+    person                 Lula 50009 10001 carpenter
+    person              Chester 50001 10000 crew
+    person                Ethel 50002 10000 stevedore
+    person              Carroll 50003 10000 mate

@@ -1,0 +1,50 @@
+// File: aSPad.txt
+// Data file for SeaPort projects
+// Date: Fri Feb 22 01:09:47 EST 2019
+// parameters: 1 3 5 5 2 1
+//   ports, docks, pships, cships, jobs, persons
+
+// port   name index parent(null)
+//    port   <string> <int> <int>
+port Victoria_(E.Africa) 10000 0
+
+// dock   name index parent(port)
+//    dock   <string> <int> <int>
+  dock Pier_0 20000 10000 30000
+  dock Pier_3 20003 10000 30003
+  dock Pier_4 20004 10000 30004
+  dock Pier_2 20002 10000 30002
+  dock Pier_1 20001 10000 30001
+  dock Pier_5 20005 10000 40000
+
+// pship  name index parent(dock/port) weight length width draft numPassengers numRooms numOccupied
+//    pship  <string> <int> <int> <double> <double> <double> <double> <int> <int> <int>
+    pship               Subset 30003 20003 136.31 358.18 118.84 16.72 1513 854 756
+    pship             Surmiser 30001 20001 179.39 330.50 46.29 23.98 800 597 400
+    pship           Paperbacks 30000 20000 147.54 305.24 82.92 41.27 96 355 48
+    pship         Epiglottises 30004 20004 216.46 188.77 104.18 35.67 2352 804 804
+    pship         Unreasonable 30002 20002 153.47 102.33 47.53 36.26 649 495 324
+
+// cship  name index parent(dock/port) weight length width draft cargoWeight cargoVolume cargoValue
+//    cship  <string> <int> <int> <double> <double> <double> <double> <double> <double> <double>
+    cship         Conspectuses 40003 10000 53.43 355.32 124.61 24.41 29.43 137.23 678.91
+    cship             Property 40004 10000 155.15 199.02 94.29 41.58 127.70 170.21 81.28
+    cship     Insurrectionally 40001 10000 245.65 252.23 87.64 43.47 28.83 120.19 770.90
+    cship              Sashays 40000 20005 136.82 384.39 105.08 40.10 62.81 162.95 576.29
+    cship                Acred 40002 10000 81.40 395.96 102.77 37.96 126.54 170.55 401.51
+
+// person name index parent skill
+//    person <string> <int> <int> <string>
+    person              Johnnie 50004 10000 mate
+    person               Lonnie 50000 10000 janitor
+    person               Eloise 50001 10000 painter
+    person              Rudolph 50003 10000 painter
+    person            Alexander 50002 10000 cleaner
+
+// job    name index parent duration [skill]+ (one or more, matches skill in person, may repeat)
+//    job    <string> <int> <int> <double> [<string>]+
+    job         Job_90_69_96 60004 40002 24.43 driver janitor clerk
+    job         Job_77_17_52 60002 30003 28.36 inspector
+    job         Job_31_34_37 60001 30002 15.00
+    job         Job_96_82_29 60000 30001 31.01
+    job         Job_91_67_20 60003 40000 39.79 crew

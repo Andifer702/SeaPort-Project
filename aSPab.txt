@@ -1,0 +1,101 @@
+// File: aSPab.txt
+// Data file for SeaPort projects
+// Date: Sat Feb 09 13:08:02 EST 2019
+// parameters: 3 1 8 8 1 1
+//   ports, docks, pships, cships, jobs, persons
+
+// port   name index parent(null)
+//    port   <string> <int> <int>
+port Itaguai 10000 0
+port Kochi 10002 0
+port Baoan 10001 0
+
+// dock   name index parent(port)
+//    dock   <string> <int> <int>
+  dock Pier_10 20010 10002 30016
+  dock Pier_8 20008 10001 30011
+  dock Pier_5 20005 10001 30008
+  dock Pier_2 20002 10000 30002
+  dock Pier_0 20000 10000 30000
+  dock Pier_7 20007 10001 30010
+  dock Pier_14 20014 10002 30020
+  dock Pier_11 20011 10002 30017
+  dock Pier_12 20012 10002 30018
+  dock Pier_4 20004 10000 30004
+  dock Pier_6 20006 10001 30009
+  dock Pier_9 20009 10001 30012
+  dock Pier_3 20003 10000 30003
+  dock Pier_1 20001 10000 30001
+  dock Pier_13 20013 10002 30019
+
+// pship  name index parent(dock/port) weight length width draft numPassengers numRooms numOccupied
+//    pship  <string> <int> <int> <double> <double> <double> <double> <int> <int> <int>
+    pship             Whomping 30015 10001 124.11 340.99 103.08 32.77 490 361 245
+    pship              Flawier 30010 20007 224.72 121.51 111.64 26.17 891 289 289
+    pship            Microbars 30007 10000 70.18 145.60 95.41 36.15 2374 874 874
+    pship              Embroil 30000 20000 249.88 215.36 107.29 21.14 653 684 326
+    pship                 Ohms 30004 20004 220.84 121.46 74.95 17.46 69 373 34
+    pship             Readying 30005 10000 199.02 353.60 91.69 18.54 581 147 147
+    pship               Salted 30023 10002 114.27 283.39 100.58 25.62 185 1044 92
+    pship             Remended 30016 20010 70.45 461.36 41.43 24.76 1299 772 649
+    pship            Valuators 30011 20008 135.07 185.00 43.61 20.71 105 523 52
+    pship           Unsticking 30021 10002 129.18 104.26 84.90 20.54 2385 660 660
+    pship            Microbial 30002 20002 93.33 307.97 42.09 30.71 1212 415 415
+    pship            Attestant 30017 20011 127.30 493.78 113.18 38.37 375 301 187
+    pship         Overreaching 30022 10002 193.30 161.35 44.53 32.77 2164 1093 1082
+    pship               Rebops 30014 10001 97.09 308.03 30.86 24.11 263 149 131
+    pship        Prosecutrixes 30019 20013 180.73 282.04 97.55 39.11 363 166 166
+    pship               Pranks 30008 20005 192.03 331.67 89.69 41.21 219 421 109
+    pship               Waders 30013 10001 244.95 492.29 40.11 41.08 1484 793 742
+    pship              Parking 30001 20001 57.34 475.19 68.46 24.75 314 897 157
+    pship            Fluencies 30012 20009 240.77 469.57 91.45 36.37 3019 1035 1035
+    pship       Unmerchantable 30009 20006 69.02 272.01 79.25 15.00 1186 697 593
+    pship        Inappreciable 30006 10000 129.08 274.75 59.45 31.95 2402 672 672
+    pship              Dowsers 30018 20012 62.26 218.16 69.33 27.78 2274 996 996
+    pship              Inflame 30020 20014 235.16 307.43 118.59 43.96 999 635 499
+    pship            Regretter 30003 20003 232.28 338.68 33.06 38.90 876 282 282
+
+// cship  name index parent(dock/port) weight length width draft cargoWeight cargoVolume cargoValue
+//    cship  <string> <int> <int> <double> <double> <double> <double> <double> <double> <double>
+    cship           Zigzagging 40018 10002 170.91 167.78 49.16 42.94 124.29 191.36 557.09
+    cship             Savoring 40003 10000 207.42 316.55 125.14 16.54 20.21 169.62 920.27
+    cship               Sedums 40010 10001 121.62 231.21 91.87 25.19 216.36 155.21 828.40
+    cship                Thymy 40020 10002 109.12 440.84 40.74 17.25 34.72 112.01 896.32
+    cship            Templates 40002 10000 85.08 329.53 96.47 21.78 166.21 104.07 231.69
+    cship             Rejoined 40009 10001 204.10 496.46 96.53 22.44 126.42 156.54 105.06
+    cship               Ardent 40022 10002 93.63 475.34 60.61 43.65 188.78 172.26 72.21
+    cship            Prechills 40000 10000 53.65 491.69 128.33 34.44 212.82 190.96 628.76
+    cship            Broadloom 40005 10000 82.26 484.67 125.89 17.75 121.64 100.47 109.33
+    cship            Proofread 40011 10001 223.11 323.82 122.36 34.79 103.20 121.76 664.99
+    cship              Plummet 40019 10002 133.06 383.85 128.16 34.39 117.12 125.80 261.25
+    cship             Figeater 40008 10001 187.54 174.71 99.58 39.13 113.01 102.58 762.80
+    cship         Interpolated 40006 10000 242.13 214.21 69.03 41.27 34.91 170.72 900.81
+    cship             Tightwad 40017 10002 56.02 272.98 74.82 32.75 215.62 183.34 841.66
+    cship           Backdating 40004 10000 205.92 391.69 51.77 35.27 172.86 147.80 941.61
+    cship              Reawake 40015 10001 76.85 126.22 60.31 36.43 111.02 142.15 270.13
+    cship              Tzetzes 40021 10002 76.71 167.47 67.57 20.33 143.80 111.36 843.71
+    cship            Sibilants 40016 10002 179.52 244.75 113.99 16.39 196.39 135.43 700.66
+    cship          Freeholders 40001 10000 106.04 275.21 119.93 43.65 32.26 139.16 518.24
+    cship      Microscopically 40014 10001 96.78 229.92 78.66 23.50 90.74 184.23 441.67
+    cship             Preadult 40012 10001 89.45 335.60 85.72 18.89 44.11 128.31 913.10
+    cship          Fertileness 40023 10002 156.23 320.05 35.73 26.37 212.36 182.09 823.39
+    cship              Dirtier 40013 10001 216.75 299.80 50.03 27.63 108.06 110.32 449.93
+    cship         Remonstrator 40007 10000 123.00 169.48 122.68 42.14 145.48 169.28 611.63
+
+// person name index parent skill
+//    person <string> <int> <int> <string>
+    person                 Raul 50009 10001 driver
+    person              Preston 50003 10000 mate
+    person               Jeremy 50006 10001 janitor
+    person                Patsy 50014 10002 mate
+    person                Joann 50000 10000 engineer
+    person              Melanie 50010 10002 driver
+    person              Terrell 50012 10002 clerk
+    person               Bessie 50001 10000 painter
+    person                 Kyle 50013 10002 craneOperator
+    person              Delbert 50002 10000 painter
+    person              Patrick 50004 10000 janitor
+    person              Shirley 50005 10001 electrician
+    person           Marguerite 50007 10001 crew
+    person              Antonia 50011 10002 carpenter
+    person             Clarence 50008 10001 janitor
