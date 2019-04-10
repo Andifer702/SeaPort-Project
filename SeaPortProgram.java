@@ -46,6 +46,13 @@ public class SeaPortProgram extends JFrame {
     private JPanel progressPanel;
     private JScrollPane jobPane;
 
+    private JPanel resourcePanel;
+    private JPanel jobUpdatePanel;
+    private JScrollPane resourcePane;
+    private JScrollPane updatePane;
+    private JTextArea resourceText;
+    private JTextArea progressText;
+
     private JTextField searchField;
     private JButton searchBtn;
 
@@ -83,6 +90,16 @@ public class SeaPortProgram extends JFrame {
     //as indicated by the data file. The objects are added to respective Hashmap to be able to
     //link the different object classes together.
     private void loadWorld(File f) throws FileNotFoundException, IOException {
+        //This is to clear the threads from the old file.
+        if (world != null) {
+            for (SeaPort sp : world.getPorts()) {
+                for (Ship sh : sp.getShip()) {
+                    for (Job j : sh.getJob()) {
+                        j.endJob();
+                    }
+                }
+            }
+        }
 
         BufferedReader selectedFile = new BufferedReader(new FileReader(f));
 
@@ -162,33 +179,55 @@ public class SeaPortProgram extends JFrame {
         textBox.append("\n");
         progressPanel.removeAll();
         for (SeaPort sp : this.world.getPorts()) {
-            
-           //For initial removal of ships with no jobs athat are docked
+
+            //For initial removal of ships with no jobs that are docked
             for (Dock d : sp.getDock()) {
                 if (d.getShip().getJob().isEmpty()) {
-                    while (!sp.getQue().isEmpty()) { 
-                        Ship newShip = sp.getQue().remove(0); //grabs the next in queue if docked ship has no job
-                        if (!newShip.getJob().isEmpty()) { 
+                    progressText.append(d.getShip().getName() + " has no jobs. Leaving dock: " + d.getName() + "\n\n");
+                    
+                    //If the docked ship has no jobs and the queue is not empty, the next ship in queue is pulled
+                    while (!sp.getQue().isEmpty()) {
+                        Ship newShip = sp.getQue().remove(0);
+                        if (!newShip.getJob().isEmpty()) {
                             d.setShip(newShip); //set as the new ship
+                            progressText.append(newShip.getName() + " docked at: " + d.getName() + "\n\n");
                             break;
-                        } else{
-                            if(sp.getQue().isEmpty()){
-                                d.setShip(newShip); //This is in case the last ship in dock has no jobs. This prevents nullpointerException.
+                        } else {
+                            if (sp.getQue().isEmpty()) {
+                                d.setShip(newShip); //This is in case the last ship in queue has no jobs. This prevents nullpointerException.
                             }
                         }
                     }
                 }
-                d.getShip().setDock(d); //sets the new dock for the ship
+                d.getShip().setDock(d); //sets the dock information for the new ship
             }
 
+            
+            //Display all available workers at port
+            for (Person p : sp.getPerson()) {
+                resourceText.append("Name:" + p.getName() + " / Skill:" + p.getSkill() + " available at port\n");
+            }
+            resourceText.append("\n");
+                    
             //This section iterates thorugh all ships to put them in the GUI
             //The queued ships will have the status of waiting
             //While docked ships wil start progress.
-            for (Ship ship : sp.getShip()) { 
-                if (!ship.getJob().isEmpty()) { 
-                    for (Job jb : ship.getJob()) { 
+            for (Ship ship : sp.getShip()) {
+                if (!ship.getJob().isEmpty()) {
+                    for (Job jb : ship.getJob()) {
                         jb.jobGUI(progressPanel); //add ProgressBar component
-                        jb.startJob(); // Begin thread
+                        jb.setWorkerTextArea(progressText);
+                        jb.setResourceTextArea(resourceText);
+                        if (!sp.checkForWorkers(jb.getRequirements())) { //Any jobs that cannot be completed is cancelled whether the ship is docked or in queue.
+                            jb.setKillFlag();
+                            jb.getWorkerTextArea().append("No available workers at " + sp.getName() + ". Cancelling " + jb.getName() + ". \n"); 
+                            if (ship.getDock() != null) { //If the ship that's cancelled is a docked ship, ship leaving is logged.
+                                progressText.append(ship.getName() + " cannot complete it's job. Leaving dock: " + ship.getDock().getName() + ".\n\n");
+                            }
+                        } else {
+                            jb.startJob(); // Begin thread
+                        }
+
                     }
                 }
             }
@@ -275,7 +314,7 @@ public class SeaPortProgram extends JFrame {
         topPanel.add(sortCombo);
         topPanel.add(sortButton);
 
-        displayPanel = new JPanel(new BorderLayout());
+        displayPanel = new JPanel(new GridLayout(3, 1));
 
         treePanel = new JPanel(new BorderLayout());
         treePanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
@@ -290,8 +329,7 @@ public class SeaPortProgram extends JFrame {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
-        displayPanel.add(scrollPane, BorderLayout.CENTER);
-        displayPanel.setPreferredSize(new Dimension(screenSize.width / 3, 600));
+        displayPanel.add(scrollPane);
 
         jobPanel = new JPanel(new BorderLayout());
         jobPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
@@ -299,6 +337,29 @@ public class SeaPortProgram extends JFrame {
 
         progressPanel = new JPanel();
         progressPanel.setLayout(new GridLayout(0, 3, 0, 10));
+
+        //Adding resource pool and thread resource status update GUI
+        progressText = new JTextArea();
+        resourceText = new JTextArea();
+
+        progressText.setLayout(new BorderLayout());
+        progressText.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+        progressText.setEditable(false);
+        resourceText.setLayout(new BorderLayout());
+        resourceText.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+        resourceText.setEditable(false);
+
+        resourcePane = new JScrollPane(resourceText);
+        updatePane = new JScrollPane(progressText);
+
+        resourcePane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        resourcePane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        updatePane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        updatePane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        displayPanel.add(resourcePane);
+        displayPanel.add(updatePane);
+        displayPanel.setPreferredSize(new Dimension(screenSize.width / 3, 600));
 
         mainPanel.add(treePanel, BorderLayout.WEST);
         mainPanel.add(displayPanel, BorderLayout.CENTER);
@@ -319,11 +380,12 @@ public class SeaPortProgram extends JFrame {
                     loadWorld(file);
                     drawTree();
                     jobPanel.removeAll();
+                    resourceText.setText("");
+                    progressText.setText("");
                     updateJob();
                     jobPane = new JScrollPane(progressPanel);
                     jobPanel.add(jobPane, BorderLayout.CENTER);
                     jobPanel.validate();
-
 
                 } catch (IOException ex) {
                     Logger.getLogger(SeaPortProgram.class
@@ -419,7 +481,7 @@ public class SeaPortProgram extends JFrame {
         sortCombo.addItem("Name");
         validate();
     }
-    
+
     //method for drawing JTree
     //Creates world root node then iterates through the objects
     //parent node is refreshed for each class to add itself to the SeaPort
