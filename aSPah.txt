@@ -1,0 +1,33 @@
+// File: aSPad.txt
+// Data file for SeaPort projects
+// Date: Fri Feb 22 01:09:47 EST 2019
+// parameters: 1 3 5 5 2 1
+//   ports, docks, pships, cships, jobs, persons
+
+// port   name index parent(null)
+//    port   <string> <int> <int>
+port Victoria_(E.Africa) 10000 0
+
+// dock   name index parent(port)
+//    dock   <string> <int> <int>
+  dock Pier_0 20000 10000 30001
+  dock Pier_3 20003 10000 30002
+  dock Pier_4 20004 10000 30000
+  
+// pship  name index parent(dock/port) weight length width draft numPassengers numRooms numOccupied
+//    pship  <string> <int> <int> <double> <double> <double> <double> <int> <int> <int>
+    pship             Surmiser 30001 20000 179.39 330.50 46.29 23.98 800 597 400
+    pship           Paperbacks 30000 20004 147.54 305.24 82.92 41.27 96 355 48
+    pship         Unreasonable 30002 20003 153.47 102.33 47.53 36.26 649 495 324
+
+
+// person name index parent skill
+//    person <string> <int> <int> <string>
+    person              Johnnie 50004 10000 mate
+
+// job    name index parent duration [skill]+ (one or more, matches skill in person, may repeat)
+//    job    <string> <int> <int> <double> [<string>]+
+    job         Job_90_69_96 60004 30000 5.00 mate
+    job         Job_77_17_52 60002 30001 5.00 mate
+    job         Job_31_34_37 60001 30002 5.00 mate
+

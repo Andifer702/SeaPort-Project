@@ -1,0 +1,86 @@
+// File: aSPag.txt
+// Data file for SeaPort projects
+// Date: Fri Mar 08 12:28:28 EST 2019
+// parameters: 1 1 5 5 10 25
+//   ports, docks, pships, cships, jobs, persons
+
+// port   name index parent(null)
+//    port   <string> <int> <int>
+port Bell_Bay 10000 0
+
+// dock   name index parent(port)
+//    dock   <string> <int> <int>
+  dock Pier_2 20002 10000 30002
+  dock Pier_0 20000 10000 30000
+  dock Pier_3 20003 10000 30003
+  dock Pier_1 20001 10000 30001
+  dock Pier_4 20004 10000 30004
+
+// pship  name index parent(dock/port) weight length width draft numPassengers numRooms numOccupied
+//    pship  <string> <int> <int> <double> <double> <double> <double> <int> <int> <int>
+    pship                Aurae 30001 20001 139.41 492.20 119.00 22.63 37 746 18
+    pship             Worthily 30003 20003 201.48 306.52 80.04 26.61 2259 979 979
+    pship             Unperson 30002 20002 217.78 343.95 33.16 25.23 2233 819 819
+    pship                Caulk 30000 20000 171.10 281.57 62.05 17.00 1004 257 257
+    pship              Espouse 30004 20004 173.06 185.98 59.70 37.14 2482 631 631
+
+// cship  name index parent(dock/port) weight length width draft cargoWeight cargoVolume cargoValue
+//    cship  <string> <int> <int> <double> <double> <double> <double> <double> <double> <double>
+    cship              Patrick 40002 10000 233.64 307.92 118.10 26.96 101.90 184.51 651.36
+    cship            Continent 40003 10000 168.83 299.74 116.88 15.60 201.18 137.79 512.53
+    cship                 Idem 40001 10000 228.24 420.47 39.30 31.34 142.03 198.70 279.32
+    cship               Salaam 40004 10000 188.34 329.68 127.94 43.24 58.65 148.46 351.37
+    cship                Waddy 40000 10000 210.72 347.23 73.80 29.61 145.71 106.32 841.36
+
+// person name index parent skill
+//    person <string> <int> <int> <string>
+    person               Howard 50008 10000 carpenter
+    person                 Elsa 50003 10000 inspector
+    person                Angel 50009 10000 mate
+    person             Paulette 50007 10000 driver
+    person               Hattie 50004 10000 craneOperator
+    person               Marian 50005 10000 engineer
+    person              Earnest 50000 10000 electrician
+    person               Eileen 50006 10000 cleaner
+    person               Leland 50002 10000 clerk
+    person              Kristin 50010 10000 janitor
+    person              Melinda 50001 10000 crew
+    person               Paulie 50011	10000 mechanic
+    person               Jonson 50012	10000 cleaner
+    person                Dante 50013	10000 painter
+    person              Jasmine 50014	10000 stevedore
+    person               Paulie 50011	10000 captain
+
+
+
+
+
+// job    name index parent duration [skill]+ (one or more, matches skill in person, may repeat)
+//    job    <string> <int> <int> <double> [<string>]+
+    job         Job_34_71_20 60003 30001 18.37
+    job         Job_28_16_21 60004 30002 20.12 mate janitor
+    job         Job_52_52_59 60006 30002 16.81 craneOperator
+    job         Job_33_13_65 60024 40003 16.86 electrician painter
+    job         Job_87_31_37 60017 40002 34.83 clerk inspector
+    job         Job_46_31_78 60016 40002 42.38 cleaner
+    job         Job_46_62_27 60020 40002 53.64 crew
+    job         Job_75_75_10 60002 30001 15.45 inspector mechanic carpenter
+    job         Job_61_43_47 60001 30000 24.80 craneOperator
+    job         Job_99_30_62 60011 30004 14.83 painter carpenter
+    job         Job_46_15_23 60014 40001 10.02 janitor painter
+    job         Job_66_97_14 60013 40000 23.72 mechanic driver
+    job         Job_83_15_66 60026 40004 36.93 stevedore
+    job         Job_57_46_63 60023 40003 17.18 craneOperator
+    job         Job_91_26_34 60012 30004 39.58 inspector craneOperator
+    job         Job_25_51_32 60015 40001 15.20 stevedore
+    job         Job_93_23_10 60000 30000 23.31 clerk
+    job         Job_70_29_87 60007 30003 19.05
+    job         Job_63_37_59 60022 40002 22.26 stevedore
+    job         Job_25_23_32 60008 30003 34.79
+    job         Job_12_82_98 60005 30002 15.61 electrician electrician
+    job         Job_61_11_27 60009 30004 27.37 electrician cleaner captain
+    job         Job_90_34_63 60010 30004 25.76 cleaner electrician cleaner
+    job         Job_81_17_79 60018 40002 13.37 janitor craneOperator
+    job         Job_16_89_98 60025 40004 18.80 mate
+    job         Job_16_14_19 60019 40002 34.56 driver inspector
+    job         Job_44_20_71 60021 40002 8.68
