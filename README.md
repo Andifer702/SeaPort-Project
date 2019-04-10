@@ -12,3 +12,4 @@ ships, and workers.
 1. Load and read the data file and display the structure. The user is able to search for specific information.
 2. Utilize hash map to implement sorting function.
 3. Implement threads and JProgressBar to show Jobs being completed for ships that are docked.
+4. Implement functionalities to dock and undock ships at port and use the resources (workers) available at Ports to complete specific tasks for docked ships.
